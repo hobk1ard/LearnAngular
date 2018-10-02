@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'fancy-button',
@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./fancy-button.component.css']
 })
 export class FancyButtonComponent{
-  onClick() {
-    alert("Hey");
+  @Input() label:string
+  @Input() message:string
+  onClick = () => {
+    alert(this.message);
   }
 }
