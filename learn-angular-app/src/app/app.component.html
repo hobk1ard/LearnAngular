@@ -1,1 +1,5 @@
 <h1>I'm {{name}}</h1>
+<h2>{{email}}</h2>
+<label>What's your name: &nbsp;</label>
+<input type="text" [(ngModel)] = "theirName" (blur)="theirNameChange()" />
+<h2>{{theirEmail}}</h2>
