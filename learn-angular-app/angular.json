@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "learn-angular-app": {
+    "hello": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/learn-angular-app",
+            "outputPath": "dist/hello",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "learn-angular-app:build"
+            "browserTarget": "hello:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "learn-angular-app:build:production"
+              "browserTarget": "hello:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "learn-angular-app:build"
+            "browserTarget": "hello:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "learn-angular-app-e2e": {
+    "hello-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "learn-angular-app:serve"
+            "devServerTarget": "hello:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "learn-angular-app:serve:production"
+              "devServerTarget": "hello:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "learn-angular-app"
+  "defaultProject": "hello"
 }
