@@ -1,8 +1,8 @@
 <h3>Please subscribe to out newsletter</h3>
 <p>Email Address</p>
-<p><fancy-text (textChange)="onEmailChange($event)"></fancy-text></p>
+<p><fancy-text [(text)]="email" (textChange)="onEmailChange($event)"></fancy-text></p>
 <p>Areas of Interest</p>
-<p><fancy-checkbox [label]="'Volleyball'"></fancy-checkbox></p>
-<p><fancy-checkbox [label]="'Football'"></fancy-checkbox></p>
-<p><fancy-checkbox [label]="'Tennis'"></fancy-checkbox></p>
-<p><fancy-button [label]="'Submit'" [message]="'Subscribed'"></fancy-button></p>
+<p *ngFor="let interest of interests">
+    <fancy-checkbox (onChange)='onCheckBoxChange($event)' [(checked)]="interest.value" label="{{interest.name}}"></fancy-checkbox>
+</p>
+<p><fancy-button [label]="'Submit'" (onClick)="onSubmit()"></fancy-button></p>

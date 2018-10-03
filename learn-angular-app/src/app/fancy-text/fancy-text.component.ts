@@ -6,10 +6,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./fancy-text.component.css']
 })
 export class FancyTextComponent {
-  @Input() text:string = "";
+  @Input() text:string = '';
   @Output() textChange = new EventEmitter();
 
-  email:string = "";
-
-  onChange() {this.textChange.emit("name")}
+  onChange() {this.textChange.emit(this.text)}
 }

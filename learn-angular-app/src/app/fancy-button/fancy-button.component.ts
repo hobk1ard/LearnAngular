@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'fancy-button',
@@ -7,8 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class FancyButtonComponent{
   @Input() label:string
-  @Input() message:string
-  onClick = () => {
-    alert(this.message);
+  @Output() onClick = new EventEmitter();
+
+  buttonPressed = () => {
+    this.onClick.emit();
   }
 }
