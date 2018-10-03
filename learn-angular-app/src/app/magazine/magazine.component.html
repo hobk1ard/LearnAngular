@@ -1,15 +1,24 @@
-Full Name:<br />
-<input type="text" [(ngModel)]="fullName" /><br />
-Magazine Edition:<br />
-<select [(ngModel)]="selectedEdition">
-    <option *ngFor="let e of editions" [ngValue]="e">{{e.name}}</option>
-</select><br />
-Shipping option:
-<input type="radio" name="selectedShipping" [(ngModel)]="selectedShipping" value="GROUND" />Ground
-<input type="radio" name="selectedShipping" [(ngModel)]="selectedShipping" value="AIR" />AIR
-<br />
-<label><input type="checkbox" [(ngModel)]="acceptPolicy" />I accept the terms and conditions</label><br />
-<br />
-Price: {{selectedEdition.Price}}
-<br />
-<button (click)="submitForm()">Purchase</button>
+<form #theForm="ngForm">
+    Full Name:<br />
+    <input name="txtFullName" type="text" required #textElement #textModel="ngModel" [(ngModel)]="fullName" /><br />
+    <span style="color: red" [hidden]="textModel.valid || textModel.untouched">
+        Please Enter your name<br />
+    </span>
+    Class names: {{textElement.className}}<br />
+    Valid: {{textModel.valid}}<br />
+    Touched: {{textModel.touched}}<br />
+    Dirty: {{textModel.dirty}}<br />
+    Magazine Edition:<br />
+    <select name="slcEdition" [(ngModel)]="selectedEdition">
+        <option *ngFor="let e of editions" [ngValue]="e">{{e.name}}</option>
+    </select><br />
+    Shipping option:
+    <input type="radio" name="selectedShipping" [(ngModel)]="selectedShipping" value="GROUND" />Ground
+    <input type="radio" name="selectedShipping" [(ngModel)]="selectedShipping" value="AIR" />AIR
+    <br />
+    <label><input type="checkbox" name="cbAcceptPolicy" [(ngModel)]="acceptPolicy" />I accept the terms and conditions</label><br />
+    <br />
+    Price: {{selectedEdition.Price}}
+    <br />
+    <button name="btnSubmit" (click)="submitForm()" [disabled]="theForm.invalid || !acceptPolicy">Purchase</button>
+</form>
