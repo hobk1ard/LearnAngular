@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-magazine',
@@ -16,13 +17,15 @@ export class MagazineComponent implements OnInit {
   selectedShipping = "";
   acceptPolicy:boolean = false;
 
+  magazineForm = new FormGroup({
+    fullName: new FormControl('', [Validators.required]),
+    selectedEdition: new FormControl(this.editions[0]),
+    selectedShipping: new FormControl(''),
+    acceptPolicy: new FormControl(false)
+  })
+
   submitForm() {
-    let requestData = {
-      customerName: this.fullName,
-      productCode: this.selectedEdition.code,
-      acceptPolicy: this.acceptPolicy,
-      shipMode: this.selectedShipping
-    }
+    let requestData = this.magazineForm.value;
     alert(JSON.stringify(requestData))
   }
 

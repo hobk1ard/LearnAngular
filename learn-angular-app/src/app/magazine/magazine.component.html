@@ -1,24 +1,20 @@
-<form #theForm="ngForm">
+<form [formGroup]="magazineForm" (ngSubmit)="submitForm()">
     Full Name:<br />
-    <input name="txtFullName" type="text" required #textElement #textModel="ngModel" [(ngModel)]="fullName" /><br />
-    <span style="color: red" [hidden]="textModel.valid || textModel.untouched">
-        Please Enter your name<br />
+    <span style="color: red" [hidden]="magazineForm.controls.fullName.valid || magazineForm.controls.fullName.untouched">
+        Please enter your name<br />
     </span>
-    Class names: {{textElement.className}}<br />
-    Valid: {{textModel.valid}}<br />
-    Touched: {{textModel.touched}}<br />
-    Dirty: {{textModel.dirty}}<br />
+    <input formControlName="fullName" type="text" /><br />
     Magazine Edition:<br />
-    <select name="slcEdition" [(ngModel)]="selectedEdition">
+    <select formControlName="selectedEdition">
         <option *ngFor="let e of editions" [ngValue]="e">{{e.name}}</option>
     </select><br />
     Shipping option:
-    <input type="radio" name="selectedShipping" [(ngModel)]="selectedShipping" value="GROUND" />Ground
-    <input type="radio" name="selectedShipping" [(ngModel)]="selectedShipping" value="AIR" />AIR
+    <input type="radio" formControlName="selectedShipping" value="GROUND" />Ground
+    <input type="radio" formControlName="selectedShipping" value="AIR" />AIR
     <br />
-    <label><input type="checkbox" name="cbAcceptPolicy" [(ngModel)]="acceptPolicy" />I accept the terms and conditions</label><br />
+    <label><input type="checkbox" formControlName="acceptPolicy" />I accept the terms and conditions</label><br />
     <br />
-    Price: {{selectedEdition.Price}}
+    Price: {{magazineForm.value.selectedEdition.price}}
     <br />
-    <button name="btnSubmit" (click)="submitForm()" [disabled]="theForm.invalid || !acceptPolicy">Purchase</button>
+    <button type="submit" [disabled]="magazineForm.invalid || !magazineForm.value.acceptPolicy">Purchase</button>
 </form>
